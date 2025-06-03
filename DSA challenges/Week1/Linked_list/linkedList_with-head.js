@@ -220,3 +220,7 @@ console.log(list.search(30));
 
 list.reverse();
 list.print();
+
+
+
+

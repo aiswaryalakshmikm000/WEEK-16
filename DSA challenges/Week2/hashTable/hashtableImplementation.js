@@ -6,7 +6,7 @@ class HashTable{
         this.size = size
     }
     hash(key){
-       let total=0
+       let total = 0
        for(let i=0; i<key.length; i++){
            total += key.charCodeAt(i)
        }
@@ -51,6 +51,7 @@ class HashTable {
         return total % this.size
     }
 
+    //insertion o(1)
     set(key, value){
         let index = this.hash(key)
         let bucket = this.table[index]
@@ -79,6 +80,7 @@ class HashTable {
         return undefined
     }
 
+    //deletion o(1)
     remove(key){
         let index = this.hash(key)
         let bucket = this.table[index]

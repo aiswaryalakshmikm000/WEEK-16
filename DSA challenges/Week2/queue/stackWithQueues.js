@@ -23,7 +23,7 @@ class stackWithQueues {
         return poppedElement
     }
 
-    top(){
+    peek(){
         if(this.queue1.length === 0){
             return null
         }

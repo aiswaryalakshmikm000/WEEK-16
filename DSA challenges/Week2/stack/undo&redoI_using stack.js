@@ -6,7 +6,7 @@ class UndoRedo{
     }
     do(action){
         this.undoStack.push(action)
-        this.redoStack=[]
+        this.redoStack=[] //clear redo stack on new action
     }
     undo(){
         if(this.undoStack.length===0){

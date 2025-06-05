@@ -165,6 +165,35 @@ function partition(arr, left, right) {
 }
 
 
+function quickSort(a, l = 0, r = a.length - 1) {
+    if (l < r) {
+        let pi = partition(a, l, r);
+        quickSort(a, l, pi - 1);
+        quickSort(a, pi + 1, r);
+    }
+    return a;
+}
+
+function partition(a, l, r) {
+    let m = Math.floor(Math.random() * (r - l + 1)) + l;  
+    [a[m], a[r]] = [a[r], a[m]]; 
+
+    let pivot = a[r];
+    let i = l;
+
+    for (let j = l; j < r; j++) {
+        if (a[j] < pivot) {
+            [a[i], a[j]] = [a[j], a[i]];
+            i++;
+        }
+    }
+    [a[i], a[r]] = [a[r], a[i]];
+    return i;
+}
+
+console.log(quickSort([8, 20, -2, 4, -6]));
+
+
 
 const array = [8, 20, -2, 4, -6]
 quickSort(array)

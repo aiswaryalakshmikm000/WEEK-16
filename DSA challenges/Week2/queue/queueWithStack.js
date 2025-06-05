@@ -30,7 +30,7 @@ class QueueWithStack{
                 this.stack2.push(this.stack1.pop())
             }
         }
-        this.stack2[this.stack2.length-1]
+        return this.stack2[this.stack2.length-1]
     }
 
     display(){

@@ -7,7 +7,7 @@ function palindrome(string){
     }
 
     for (let char of string){
-        if(char != stack.pop()){
+        if(char !== stack.pop()){
             return false 
         } 
     }

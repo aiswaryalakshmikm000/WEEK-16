@@ -23,9 +23,9 @@ class HashTable{
                 samekeyitem[1]=value
             }else{
                 bucket.push([key,value])
-                this.count++
             }
         }
+        this.count++
         if(this.count/this.size>0.7){
             this.rehash()
         }
@@ -75,8 +75,6 @@ class HashTable{
             }
         }
     }
-    
-
 }
 
 const hash = new HashTable(4)

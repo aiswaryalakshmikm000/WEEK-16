@@ -42,7 +42,7 @@ class QueueLinkedList{
         if(this.isEmpty()){
             this.rear = null
         }
-
+        this.size--
         return removedValue
     }
 

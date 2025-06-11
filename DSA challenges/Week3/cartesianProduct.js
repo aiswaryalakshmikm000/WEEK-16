@@ -9,4 +9,4 @@ function cartesian(arr1, arr2){
 }
 
 
-console.log(cartesian([1,2] , [3,4]))
+console.log(cartesian([1,2] , [3,4]))   // output: [[1,3],[1,4],[2,3],[2,4]]

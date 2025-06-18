@@ -171,7 +171,7 @@ class BinarySearchTree {
     }
   }
 
-/////another way for seconf smallest
+  /////another way for seconf smallest
   // secondLargest() {
   //   if (this.root === null) return null;
 
@@ -192,7 +192,7 @@ class BinarySearchTree {
     let result = null;
 
     const reverseInOrder = (node) => {
-      if (!node || count >= 2) return;
+      if (!node || result !== null) return;
       reverseInOrder(node.right);
       count++;
       if (count === 2) {
@@ -206,12 +206,31 @@ class BinarySearchTree {
     return result;
   }
 
+  kthLargest(k) {
+    let count = 0;
+    let result = null;
+
+    function reverseInOrder(node) {
+      if (!node || result !== null) return;
+      reverseInOrder(node.right);
+      count++;
+      if (count === k) {
+        result = node.value;
+        return;
+      }
+      reverseInOrder(node.left);
+    }
+
+    reverseInOrder(this.root);
+    return result;
+  }
+
   secondSmallest() {
     let count = 0;
     let result = null;
 
     const inOrder = (node) => {
-      if (!node || count >= 2) return;
+      if (!node || result !== null) return;
       inOrder(node.left);
       count++;
       if (count === 2) {
@@ -220,6 +239,25 @@ class BinarySearchTree {
       }
       inOrder(node.right);
     };
+
+    inOrder(this.root);
+    return result;
+  }
+
+  kthSmallest(k) {
+    let count = 0;
+    let result = null;
+
+    function inOrder(node) {
+      if (!node || result !== null) return;
+      inOrder(node.left);
+      count++;
+      if (count === k) {
+        result = node.value;
+        return;
+      }
+      inOrder(node.right);
+    }
 
     inOrder(this.root);
     return result;
@@ -331,9 +369,11 @@ bst.levelOrder();
 console.log("IS valid BST?", bst.isValidBst());
 console.log("Max depth of bst?", bst.maxDepth(bst.root));
 console.log("Depth of 15?", bst.depthOfValue(15));
+
 console.log("Second Largest element of bst?", bst.secondLargest());
 console.log("Closest of 8?", bst.closest(8));
 console.log("Is BST balanced?", bst.balanced(bst.root));
+
 console.log("Total Sum:", bst.sumAllNodes(bst.root));
 console.log("Sum of Left Subtree:", bst.sumLeftSubtree());
 console.log("Sum of Right Subtree:", bst.sumRightSubtree());
@@ -341,3 +381,6 @@ console.log("Sum of Right Subtree:", bst.sumRightSubtree());
 console.log("Total Count:", bst.countAllNodes(bst.root));
 console.log("Left Subtree Count:", bst.countLeftSubtree());
 console.log("Right Subtree Count:", bst.countRightSubtree());
+
+console.log("2nd Largest:", bst.kthLargest(2));
+console.log("3rd Smallest:", bst.kthSmallest(3));

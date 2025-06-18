@@ -59,7 +59,7 @@ function mergeStrings(left, right) {
     return sorted + left.slice(i) + right.slice(j);
 }
 
-console.log(mergeSortString(input));
+console.log(mergeSortString("input"));
 
 
 

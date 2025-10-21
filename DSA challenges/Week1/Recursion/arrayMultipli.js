@@ -5,7 +5,7 @@ function multiply(arr){
     return arr[0]*multiply(arr.slice(1))
 }
 
-console.log(multiply([1,2,3,4]))
+console.log(multiply([1,2,3,4]))  //24
 
 
 //Time Complexity: 𝑂(𝑛)

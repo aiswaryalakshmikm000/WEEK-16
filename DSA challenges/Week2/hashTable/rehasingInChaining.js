@@ -11,6 +11,7 @@ class HashTable{
         }
         return total%this.size
     }
+
     set(key,value){
         let index = this.hash(key)
         let bucket = this.table[index]
@@ -30,6 +31,7 @@ class HashTable{
             this.rehash()
         }
     }
+
     get(key){
         const index=this.hash(key)
         const bucket=this.table[index]
@@ -40,6 +42,7 @@ class HashTable{
             }
         }
     }
+    
     remove(key){
         const index=this.hash(key)
         const bucket=this.table[index]

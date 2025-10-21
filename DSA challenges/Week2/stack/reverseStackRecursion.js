@@ -18,10 +18,11 @@ function insertAtbottom(stack,element){
 
 let stack=[1,2,3,4,5]
 RecursiveStack(stack)
-console.log(stack)
+console.log(stack) //[ 5, 4, 3, 2, 1 ]
 
-reverseStack(stack);
 
-console.log(stack); // ➜ [4, 3, 2, 1]
+RecursiveStack(stack);
+
+console.log(stack); // [ 1, 2, 3, 4, 5 ]
 
 

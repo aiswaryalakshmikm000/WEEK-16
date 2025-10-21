@@ -1,4 +1,4 @@
-let str = "this is my brand new car"
+let str = "this is my brand new car. i love my new car"
 let str1 = 'my'
 let str2 = 'new'
 

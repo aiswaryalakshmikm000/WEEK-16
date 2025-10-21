@@ -9,13 +9,11 @@ function validParenthesis(str){
 
     let stack = []
 
-    for (char of str){
+    for (let char of str){
         if(valid[char]){
             stack.push(valid[char])
         } else {
-            if(char !== stack.pop()){
-                return false
-            }
+            if(char !== stack.pop()) return false
         }
     }
     return stack.length === 0

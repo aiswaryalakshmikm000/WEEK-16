@@ -1,3 +1,6 @@
+//best, avg, wrst = O(n log n)
+//space = O(n)
+
 function mergeSort (array){
     if(array.length < 2){
         return array
@@ -7,7 +10,7 @@ function mergeSort (array){
     let leftArray = array.slice(0,middleIndex)
     let rightArray = array.slice(middleIndex)
 
-    return mergeSort(mergeSort(leftArray),mergeSort(rightArray))
+    return merge(mergeSort(leftArray),mergeSort(rightArray))
 }
 
 function merge(leftArray,rightArray){
@@ -25,6 +28,10 @@ function merge(leftArray,rightArray){
 
 console.log(mergeSort([4,2,7,34,-2,45,-34]))
 
+
+// divide the array into halves and then recursively divide until it becomes one or 2 elements.. nad then 
+// check if the elements are sorted at the 0th index like l[0] < r[0] .. add the element to the sorted array
+// according to the ascending or decending order.   and then merge all together and return
 
 
 //============================================mergeSort string===================================================
@@ -67,21 +74,20 @@ console.log(mergeSortString("input"));
 //===============================================reverse string by using mergesort===============================
 
 
-function MergeSort(str){
-    let arr = str.split('');
-    if(arr.length < 2) return arr;
+function mergeSort(str){
+    if(str.length < 2) return str;
     
-    let middle = Math.floor(arr.length / 2);
-    let leftArray = arr.slice(0, middle).join('')
-    let rightArray = arr.slice(middle).join('')
+    let middle = Math.floor(str.length / 2);
+    let leftStr = str.slice(0, middle)
+    let rightStr = str.slice(middle)
     
-    return merge(MergeSort(leftArray), MergeSort(rightArray)).join('')
+    return merge(mergeSort(leftStr), mergeSort(rightStr)).join('')
 }
 
-function merge(leftArray, rightArray){
-    return [...rightArray,...leftArray]
+function merge(leftStr, rightStr){
+    return [...rightStr,...leftStr]
 }
 
 
 let str = 'AISHU';
-console.log(MergeSort(str))
+console.log(mergeSort(str))

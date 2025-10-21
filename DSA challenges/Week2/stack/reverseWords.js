@@ -1,23 +1,3 @@
-function reverseWords(string){
-    let splitwords = string.split('')
-    let stack = []
-    let reverse = ''
-
-    for (let word of splitwords){
-        stack.push(word)
-    }
-    
-    while(stack.length){
-        reverse += stack.pop()
-    }
-
-    return reverse
-}
-
-console.log(reverseWords("MY NAME IS AISHU"))  // UHSIA SI EMAN YM
-
-
-//===================================================inplace reverse==================================================
 
 function reverseStringInPlace(string){
     let reverse =''

@@ -16,6 +16,7 @@ class LinkedList {
   isEmpty() {
     return this.size === 0;
   }
+  
   getSize() {
     return this.size;
   }
@@ -23,7 +24,7 @@ class LinkedList {
   //O(1)
   prepend(value) {
     const node = new Node(value); //here prepend the value = 10 and next = null as not mentioned
-    if (this.isEmpty()) {
+    if (this.isEmpty()) { // this.head === null  or !this.head
       this.head = node;
     } else {
       node.next = this.head;
@@ -48,16 +49,9 @@ class LinkedList {
   }
 
   insert(value, index) {
-    if (index < 0 || index > this.size) {
-      return;
-    }
-    if (index === 0) {
-      return this.prepend(value);
-    }
-
-    if (index === this.size) {
-      return this.append(value);
-    }
+    if (index < 0 || index > this.size) return
+    if (index === 0) return this.prepend(value);
+    if (index === this.size) return this.append(value);
 
     const node = new Node(value);
     let prev = this.head;
@@ -119,9 +113,7 @@ class LinkedList {
     let i = 0;
     let curr = this.head;
     while (curr) {
-      if (curr.value === value) {
-        return i;
-      }
+      if (curr.value === value) return i;
       curr = curr.next;
       i++;
     }
@@ -149,7 +141,7 @@ class LinkedList {
       let curr = this.head;
       let listValues = "";
       while (curr) {
-        listValues += `${curr.value} `;
+        listValues += `${curr.value}`;
         curr = curr.next;
       }
       console.log("List values", listValues);

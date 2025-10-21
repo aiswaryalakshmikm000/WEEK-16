@@ -21,3 +21,4 @@ function sortStack(originalStack) {
 }
 
 console.log(sortStack([3, 2, 6, 9, 1, 10, 0]));
+//[10, 9, 6, 3, 2, 1, 0]

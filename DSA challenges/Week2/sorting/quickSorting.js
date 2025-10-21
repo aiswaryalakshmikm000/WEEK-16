@@ -1,3 +1,7 @@
+//best, avg = O(n log n), worst = (O(n2))
+//space = O(log n)
+
+
 // with more space complexity
 // right end pivot
 function quickSort(array){
@@ -18,6 +22,11 @@ function quickSort(array){
     return [...quickSort(leftArray), pivot, ...quickSort(rightArray)]
 }
 
+
+// fix a pivot element.. by checking each element with the pivot element and then arrange it in the 
+// left and right array based on the elemts lt pivot and gt pivot....recursively check for the pivots 
+// inthe left and right array and then return
+//
 //left end
 function quickSort(array){
     if(array.length < 2){

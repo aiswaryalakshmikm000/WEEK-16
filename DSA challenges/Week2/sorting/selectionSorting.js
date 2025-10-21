@@ -1,3 +1,7 @@
+//best ,avg, worst = O(n2)
+//space O(1)
+
+
 function selectionSorting(array){
     let n = array.length
     for (let i=0; i<n-1; i++){
@@ -11,12 +15,18 @@ function selectionSorting(array){
 
         if(minIndex != i){
             [array[i], array[minIndex]] = [array[minIndex], array[i]]
-            }
         }
+    }
     return array
 }
 
-console.log(selectionSorting([1, 3, 0, 6, 2]))
+console.log(selectionSorting([1 , 3, 0, 6, 2]))
+
+
+// after setting i fixed and j runs through the array, in each i iteration it will check for the min key
+// from the whole elements of array then update the min key 
+// check for min key === i .. if not then swap ..finally the min keys in each iteration will appear 
+// at the front and get sorted
 
 
 //finding the smallest from the each iteratin and bringing it to the first by comparing with i if the min changed from initial declaired i value

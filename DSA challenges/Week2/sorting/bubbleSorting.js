@@ -1,3 +1,6 @@
+//best = O(n), avg, worst =O(n2)  
+//space = O(1)
+
 function bubble(arr){
     const n = arr.length
     
@@ -10,6 +13,8 @@ function bubble(arr){
     }
     return arr
 }
+
+//in each itereation check the adjacent elements and if they arent sorted then it eill be sortedd
 
 //method 2 : optimized
 

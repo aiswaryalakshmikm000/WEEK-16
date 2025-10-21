@@ -33,7 +33,7 @@ class QueueWithStack{
         return this.stack2[this.stack2.length-1]
     }
 
-    display(){
+    display(){ //rev of stack 2 is stack 1 like + rest of stack elements
         const fullQueue = [...this.stack2].reverse().concat(this.stack1) //spread to make the copy of stack2
         console.log(fullQueue.join('-->'))
     }

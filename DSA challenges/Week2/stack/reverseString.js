@@ -7,8 +7,8 @@ function reverseString(string){
     }
     
     while(stack.length > 0){
-    reverse += stack.pop()
-}
+        reverse += stack.pop()
+    }
 
     return reverse 
 }

@@ -1,3 +1,5 @@
+// Double-Ended Queue — a data structure that allows insertion and deletion from both the front and the back.
+
 class Deque {
     constructor() {
         this.items = []

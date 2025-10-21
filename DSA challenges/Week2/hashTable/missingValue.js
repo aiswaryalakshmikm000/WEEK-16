@@ -16,4 +16,4 @@ function missingArray(array){
 }
 
 
-console.log(missingArray([4,3,2,7,8,2,3,1,8]))
+console.log(missingArray([4,3,2,7,8,2,3,1,8]))  //[ 5, 6, 9 ]

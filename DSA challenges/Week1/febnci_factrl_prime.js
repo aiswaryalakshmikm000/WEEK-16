@@ -11,7 +11,6 @@ function febinocci(n) {
 console.log(febinocci(7));
 
 
-
 console.log("--------------------------------------febinocci recursion------------------------------------------------");
 //O(2^n)
 function recurssiveFebinocci(n) {
@@ -23,6 +22,19 @@ function recurssiveFebinocci(n) {
 
 console.log(recurssiveFebinocci(7));
 
+
+// =============================================== to get the array like febinocci: 
+
+function febrecursion (n) {
+  if(n === 1) return [0]
+  if(n === 2) return [0,1]
+
+  let arr = febrecursion(n-1)
+  arr.push(arr[arr.length-1] + arr[arr.length-2])
+
+  return arr
+}
+console.log(febrecursion(7));
 
 
 // //working
@@ -83,32 +95,13 @@ function recursiveFactorial(n){
 console.log(factorial(5));
 
 
-
-// console.log("--------------------------------------prime----------------------------------------------------------------");
-// //prime  Big(O) ==> O(n)
-// function isPrime(n) {
-//   if (n < 2) {
-//     return false;
-//   }
-//   for (i = 2; i < n; i++) {
-//     if (n % i === 0) {
-//       return false;
-//     }
-//   }
-//   return true;
-// }
-
-// console.log(isPrime(2));
-
-
-
 console.log("--------------------------------------prime---------------------------------------------------------------");
 //prime  Big(O) ==> O(sqrt(n))
 function isPrime(n) {
   if (n < 2) {
     return false;
   }
-  for (i = 2; i < Math.sqrt(n); i++) {
+  for (let i = 2; i < Math.sqrt(n); i++) {  //if i < n as the updation then the B(o) = O(n)
     if (n % i === 0) {
       return false;
     }
@@ -123,9 +116,12 @@ console.log(isPrime(2));
 console.log("--------------------------------------power of 2 -----------------------------------------------------------");
 //power of 2  O(log n)
 function isPowerOfTwo(n) {
-  if (n < 1) {
+
+  if (n < 1) {  /// not 0 n neg nums
     return false;
   }
+  if(n === 1) return true//not required
+
   while (n > 1) {
     if (n % 2 !== 0) {
       return false;
@@ -137,6 +133,15 @@ function isPowerOfTwo(n) {
 
 console.log(isPowerOfTwo(9));
 
+// power of 2 recursion 
+
+function recursivePowerOfTwo (num) {
+  if (num < 1) return false
+  if (num === 1) return true
+  if (num%2 !== 0) return false
+
+  return recursivePowerOfTwo(num/2)
+}
 
 
 console.log("--------------------------------------power of 2 bitwise---------------------------------------------------------");

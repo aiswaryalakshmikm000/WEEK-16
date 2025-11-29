@@ -15,7 +15,6 @@ class UndoRedo{
         }
         let action =this.undoStack.pop()
         this.redoStack.push(action)
-        console.log("undone",action)
     }
     redo(){
         if(this.redoStack.length===0){
@@ -24,11 +23,10 @@ class UndoRedo{
         }
         let action =this.redoStack.pop()
         this.undoStack.push(action)
-        console.log(action)
     }
 }
 
-const editor=new UndoRedo()
+const editor = new UndoRedo()
 editor.do("Type A")
 editor.do("Type B")
 

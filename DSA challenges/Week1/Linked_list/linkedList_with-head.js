@@ -64,9 +64,7 @@ class LinkedList {
   }
 
   removeFrom(index) {
-    if (index < 0 || index >= this.size) {
-      return;
-    }
+    if (index < 0 || index >= this.size) return;
     let removedNode;
     if (index === 0) {
       removedNode = this.head;
@@ -84,9 +82,7 @@ class LinkedList {
   }
 
   removeValue(value) {
-    if (this.isEmpty()) {
-      return null;
-    }
+    if (this.isEmpty()) return null
     if (this.head.value === value) {
       this.head = this.head.next;
       this.size--;
@@ -107,9 +103,7 @@ class LinkedList {
   }
 
   search(value) {
-    if (this.isEmpty()) {
-      return -1;
-    }
+    if (this.isEmpty()) return -1
     let i = 0;
     let curr = this.head;
     while (curr) {

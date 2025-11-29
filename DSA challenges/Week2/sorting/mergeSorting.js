@@ -1,7 +1,7 @@
 //best, avg, wrst = O(n log n)
 //space = O(n)
 
-function mergeSort (array){
+function mergeSort (array){ 
     if(array.length < 2){
         return array
     }
@@ -29,7 +29,7 @@ function merge(leftArray,rightArray){
 console.log(mergeSort([4,2,7,34,-2,45,-34]))
 
 
-// divide the array into halves and then recursively divide until it becomes one or 2 elements.. nad then 
+// divide the array into halves and then recursively divide until it becomes one elements in left and right array.. nad then 
 // check if the elements are sorted at the 0th index like l[0] < r[0] .. add the element to the sorted array
 // according to the ascending or decending order.   and then merge all together and return
 

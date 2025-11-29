@@ -13,7 +13,7 @@ class QueueWithStack{
             return null
         }
         if(this.stack2.length === 0){
-            while(this.stack1.length){
+            while(this.stack1.length){ 
                 this.stack2.push(this.stack1.pop())
             }
         }

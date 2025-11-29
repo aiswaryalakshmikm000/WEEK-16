@@ -1,3 +1,7 @@
+// a complete binary tree satisfy the heap property, min heap all the parent node 
+// will be less than or equal to the child
+
+
 class MinHeap {
   constructor() {
     this.heap = [];
@@ -15,11 +19,8 @@ class MinHeap {
     return i * 2 + 2;
   }
 
-  swap(index1, index2) {
-    [this.heap[index1], this.heap[index2]] = [
-      this.heap[index2],
-      this.heap[index1],
-    ];
+  swap(i, j) {
+    [this.heap[i], this.heap[j]] = [this.heap[j], this.heap[i]];
   }
 
   getMin() {
@@ -43,7 +44,7 @@ class MinHeap {
 
   isHeap(arr) {
     let n = arr.length;
-    for (let i = 0; i <= Math.floor((n - 2) / 2); i++) {
+    for (let i = 0; i <= Math.floor((n - 2) / 2); i++) {  //pick upto non leaf node, Leaf nodes have no children, So they automatically satisfy heap property
       let left = this.getLeftChildIndex(i);
       let right = this.getRightChildIndex(i);
       if (left < n && arr[i] > arr[left]) return false;
@@ -61,6 +62,7 @@ class MinHeap {
   extractMin() {
     if (this.heap.length === 0) return null;
     if (this.heap.length === 1) return this.heap.pop();
+
     let min = this.heap[0];
     this.heap[0] = this.heap.pop();
     this.heapifyDown(0);
@@ -71,16 +73,11 @@ class MinHeap {
     let smallest = index;
     let leftChildIndex = this.getLeftChildIndex(index);
     let rightChildIndex = this.getRightChildIndex(index);
-    if (
-      leftChildIndex < this.heap.length &&
-      this.heap[leftChildIndex] < this.heap[smallest]
-    ) {
+    
+    if (leftChildIndex < this.heap.length && this.heap[leftChildIndex] < this.heap[smallest]) {
       smallest = leftChildIndex;
     }
-    if (
-      rightChildIndex < this.heap.length &&
-      this.heap[rightChildIndex] < this.heap[smallest]
-    ) {
+    if (rightChildIndex < this.heap.length && this.heap[rightChildIndex] < this.heap[smallest]) {
       smallest = rightChildIndex;
     }
     if (smallest !== index) {

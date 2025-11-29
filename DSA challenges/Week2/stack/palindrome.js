@@ -15,3 +15,16 @@ function palindrome(string){
 
 console.log(palindrome("malayalam"))
 console.log(palindrome("aishu"))
+
+//normal
+
+function check(str) {
+    
+    for(let i=0; i<str.length/2; i++){
+        if(str[i] !== str[str.length-1-i]) return false
+    }
+    return true
+}
+
+console.log(check('malayalam'))
+console.log(check('aishu'))

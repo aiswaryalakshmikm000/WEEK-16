@@ -21,36 +21,36 @@ class Trie{
         curr.EndWord = true
     }
 
-    longestPrefix() {   //flower, flow, flop
+    longestPrefix() {   // flower, flow, flop
         let curr = this.root
         let prefix = ''
         while (curr) {
-            const keys = Object.keys(curr.children) //['f'],      for o => ['w', 'p']  if !==1 the n more words are there || endWord true case ...so that is the largest so break
-            if(keys.length !== 1 || curr.EndWord) break
-            let char = keys[0]
-            prefix += char
-            curr = curr.children[char]
+            const keys = Object.keys(curr.children) // ['f'],      for o => ['w', 'p']  if !==1 then more words are there || endWord true case ...so that is the largest so break
+            if(keys.length !== 1 || curr.EndWord) break // !==1 means root cant have multiple words of diff letter start like flower, flop, door/// f and d so break prefix = '' ||| also flop flex....so o and e
+            let val = keys[0]
+            prefix += val
+            curr = curr.children[val]
         }
         return prefix
     }
 
     collectAllWords(prefix, word, curr) {
         if(curr.EndWord) {
-            word.push(prefix)
+            word.push(prefix)  // pushes at the flow , flower, flop  for the flo prefix
         }
         for(let key in curr.children) {
-            this.collectAllWords(prefix + key, word, curr.children[key])
+            this.collectAllWords(prefix + key, word, curr.children[key]) // this is a depth first search
         }
     }
 
     autoComplete(prefix){
         let curr = this.root
         let words = []
-        for (let val of prefix){
+        for (let val of prefix){ // if any letter not found then the prefix not exists
             if (!curr.children[val]){
-                return words
+                return words // prefix not found the n return []
             }
-            curr = curr.children[val]
+            curr = curr.children[val] 
         }
         this.collectAllWords(prefix, words, curr)
         return words

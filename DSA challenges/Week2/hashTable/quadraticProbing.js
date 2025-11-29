@@ -1,3 +1,5 @@
+// similar like linear probing
+
 class QuadraticProbing{
     constructor(size){
         this.table = new Array(size)
@@ -50,7 +52,7 @@ class QuadraticProbing{
                this.count--
                return
             }
-            index=(index + i*i) % this.size
+            index = (index + i*i) % this.size
             i++
         }
     }

@@ -1,6 +1,26 @@
 //best, avg = O(n log n), worst = (O(n2))
 //space = O(log n)
 
+// //common for all
+// function quickSort(array){
+//     if (array.length < 2) return array;
+
+//     let pivotIndex = array.length-1              // choose pivot
+//     let pivot = array[pivotIndex];
+
+//     let left = [];
+//     let right = [];
+
+//     for (let i = 0; i < array.length; i++) {
+//         if (i === pivotIndex) continue;
+
+//         if (array[i] < pivot) left.push(array[i]);
+//         else right.push(array[i]);
+//     }
+
+//     return [...quickSort(left), pivot, ...quickSort(right)];
+// }
+
 
 // with more space complexity
 // right end pivot
@@ -56,7 +76,7 @@ function quickSort(array){
     let leftArray = []
     let rightArray = []
     
-    for(let i=1; i<array.length; i++){
+    for(let i=0; i<array.length; i++){
         if(i === middleIndex) continue;
         if(array[i]<pivot){
             leftArray.push(array[i])
@@ -77,7 +97,7 @@ function quickSort(array){
     let leftArray = []
     let rightArray = []
     
-    for(let i=1; i<array.length; i++){
+    for(let i=0; i<array.length; i++){
         if(i === randomIndex) continue;
         if(array[i]<pivot){
             leftArray.push(array[i])

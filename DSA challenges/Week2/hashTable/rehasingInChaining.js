@@ -1,18 +1,20 @@
+//similar logic like the separate chaining
+
 class HashTable{
-    constructor(size=4){
-        this.table=new Array(size)
-        this.size=size
-        this.count=0
+    constructor(size = 4){
+        this.table = new Array(size)
+        this.size = size
+        this.count = 0 
     }
     hash(key){
-        let total=0
-        for(let i=0;i<key.length;i++){
-            total+=key.charCodeAt(i)
+        let total = 0
+        for(let i=0; i<key.length; i++){
+            total += key.charCodeAt(i)
         }
-        return total%this.size
+        return total % this.size
     }
 
-    set(key,value){
+    set(key, value){
         let index = this.hash(key)
         let bucket = this.table[index]
         if(!bucket){
@@ -21,22 +23,22 @@ class HashTable{
         }else{
             let samekeyitem = bucket.find(item => item[0] === key)
             if(samekeyitem){
-                samekeyitem[1]=value
+                samekeyitem[1] = value
             }else{
                 bucket.push([key,value])
+                this.count++
             }
         }
-        this.count++
-        if(this.count/this.size>0.7){
+        if(this.count / this.size > 0.7){
             this.rehash()
         }
     }
 
     get(key){
-        const index=this.hash(key)
-        const bucket=this.table[index]
+        const index = this.hash(key)
+        const bucket = this.table[index]
         if(bucket){
-            let samekeyitem=bucket.find(item=>item[0]==key)
+            let samekeyitem = bucket.find(item=>item[0] === key) 
             if(samekeyitem){
                 return samekeyitem[1]
             }
@@ -44,35 +46,37 @@ class HashTable{
     }
     
     remove(key){
-        const index=this.hash(key)
-        const bucket=this.table[index]
+        const index = this.hash(key)
+        const bucket = this.table[index]
         if(bucket){
-            let samekeyitem=bucket.find(item=>item[0]==key)
+            let samekeyitem = bucket.find(item => item[0] === key)
             if(samekeyitem){
-               return bucket.splice(bucket.indexOf(samekeyitem),1)
+               bucket.splice(bucket.indexOf(samekeyitem),1)
                this.count--
+               return true
             }
         }
-        
     }
+
     display(){
-        for(let i=0;i<this.table.length;i++){
+        for(let i=0; i<this.table.length; i++){
             if(this.table[i]){
                 console.log(this.table[i])
             }
         }
         console.log("size", this.size)
     }
+
     rehash(){
-        const oldtable=this.table
-        this.size=this.size*2
-        this.table=new Array(this.size)
-        this.count=0
-        for(let i=0;i<oldtable.length;i++){
-            const bucket=oldtable[i]
+        const oldtable = this.table
+        this.size = this.size*2
+        this.table = new Array(this.size)
+        this.count = 0
+        for(let i=0; i<oldtable.length; i++){
+            const bucket = oldtable[i]
             if(bucket){
-                for(let j=0;j<bucket.length;j++){
-                    const [key,value]=bucket[j]
+                for(let j=0; j<bucket.length; j++){
+                    const [key,value] = bucket[j]
                     this.set(key,value)
                 }
             }

@@ -67,6 +67,7 @@ class BinarySearchTree {
   }
 
   levelOrder() {
+    if(this.root === null) return 
     const queue = [];
     queue.push(this.root);
     while (queue.length) {
@@ -82,7 +83,7 @@ class BinarySearchTree {
   }
 
   sumAllNodes(root) {
-    if (root === null) return 0;
+    if (!root) return 0;
     return (
       root.value + this.sumAllNodes(root.left) + this.sumAllNodes(root.right)
     );
@@ -99,7 +100,7 @@ class BinarySearchTree {
   }
 
   countAllNodes(root) {
-    if (root === null) return 0;
+    if (!root) return 0;
     return 1 + this.countAllNodes(root.left) + this.countAllNodes(root.right);
   }
 
@@ -118,7 +119,7 @@ class BinarySearchTree {
   }
 
   validate(root, minValue, maxValue) {
-    if (root === null) return true;
+    if (!root) return true;
     if (root.value <= minValue || root.value >= maxValue) return false;
     return (
       this.validate(root.left, minValue, root.value) &&
@@ -127,20 +128,17 @@ class BinarySearchTree {
   }
 
   maxDepth(root) {
-    if (root === null) return 0;
+    if (!root) return 0;
     let leftHeight = this.maxDepth(root.left);
     let rightHeight = this.maxDepth(root.right);
-
-    return Math.max(leftHeight, rightHeight) + 1;
+    return Math.max(leftHeight, rightHeight) + 1; // +1 accounts for the current node itself
   }
 
   depthOfValue(value) {
     let depth = 0;
     let curr = this.root;
     while (curr) {
-      if (value === curr.value) {
-        return depth;
-      }
+      if (value === curr.value) return depth;
       if (value < curr.value) {
         curr = curr.left;
       } else {
@@ -152,6 +150,7 @@ class BinarySearchTree {
   }
 
   min(root) {
+    if (!root) return null;
     if (!root.left) {
       return root.value;
     } else {
@@ -160,6 +159,7 @@ class BinarySearchTree {
   }
 
   max(root) {
+    if (!root) return null;
     if (!root.right) {
       return root.value;
     } else {
@@ -178,29 +178,10 @@ class BinarySearchTree {
   //     curr = curr.right;
   //   }
   //   if (curr.left !== null) {
-  //     return this.max(curr.left);
+  //     return this.w(curr.left);
   //   }
   //   return parent.value;
   // }
-
-  secondLargest() {
-    let count = 0;
-    let result = null;
-
-    const reverseInOrder = (node) => {
-      if (!node || result !== null) return;
-      reverseInOrder(node.right);
-      count++;
-      if (count === 2) {
-        result = node.value;
-        return;
-      }
-      reverseInOrder(node.left);
-    };
-
-    reverseInOrder(this.root);
-    return result;
-  }
 
   kthLargest(k) {
     let count = 0;
@@ -210,7 +191,7 @@ class BinarySearchTree {
       if (!node || result !== null) return;
       reverseInOrder(node.right);
       count++;
-      if (count === k) {
+      if (count === k) {  //put 2 instead of k for the secondlargest
         result = node.value;
         return;
       }
@@ -221,24 +202,6 @@ class BinarySearchTree {
     return result;
   }
 
-  secondSmallest() {
-    let count = 0;
-    let result = null;
-
-    const inOrder = (node) => {
-      if (!node || result !== null) return;
-      inOrder(node.left);
-      count++;
-      if (count === 2) {
-        result = node.value;
-        return;
-      }
-      inOrder(node.right);
-    };
-
-    inOrder(this.root);
-    return result;
-  }
 
   kthSmallest(k) {
     let count = 0;
@@ -248,7 +211,7 @@ class BinarySearchTree {
       if (!node || result !== null) return;
       inOrder(node.left);
       count++;
-      if (count === k) {
+      if (count === k) { //put k=2 for the second smallest element
         result = node.value;
         return;
       }
@@ -266,7 +229,7 @@ class BinarySearchTree {
     let close = Infinity;
 
     while (curr !== null) {
-      if (Math.abs(curr.value - target) < Math.abs(close - target)) {
+      if (Math.abs(curr.value - target) < Math.abs(close - target)) { // here the checking fluctuates and if the if condition is not correct.. then return the close which was calculated in prev iteration
         close = curr.value;
       }
 
@@ -282,11 +245,11 @@ class BinarySearchTree {
   }
 
   balanced(root) {
-    return this.isBalanced(root) !== -1;
+    return this.isBalanced(root) !== -1;  // -1 if its not balanced
   }
 
   isBalanced(root) {
-    if (root === null) return 0;
+    if (!root) return 0;
 
     let leftHeight = this.isBalanced(root.left);
     if (leftHeight === -1) return -1;
@@ -302,22 +265,22 @@ class BinarySearchTree {
   }
 
   deleteNode(root, value) {
-    if (!root) return null;
+    if (!root) return null; // base case reached empty subtree
 
     if (value < root.value) {
       root.left = this.deleteNode(root.left, value);
     } else if (value > root.value) {
       root.right = this.deleteNode(root.right, value);
-    } else {
-      if (!root.left && !root.right) return null;
-      if (!root.left) return root.right;
-      if (!root.right) return root.left;
+    } else {    // (root.value === value)    // We found the node to delete // its the  deletion phase
+      if (!root.left && !root.right) return null; //node has no children
+      if (!root.left) return root.right; // has right child 
+      if (!root.right) return root.left; //has left child 
 
-      const minValue = this.min(root.right);
+      const minValue = this.min(root.right); //has left an d right child case
       root.value = minValue;
       root.right = this.deleteNode(root.right, minValue);
     }
-    return root;
+    return root; // return updated root
   }
 }
 
@@ -366,7 +329,7 @@ console.log("IS valid BST?", bst.isValidBst());
 console.log("Max depth of bst?", bst.maxDepth(bst.root));
 console.log("Depth of 15?", bst.depthOfValue(15));
 
-console.log("Second Largest element of bst?", bst.secondLargest());
+// console.log("Second Largest element of bst?", bst.secondLargest());
 console.log("Closest of 8?", bst.closest(8));
 console.log("Is BST balanced?", bst.balanced(bst.root));
 
@@ -380,3 +343,7 @@ console.log("Right Subtree Count:", bst.countRightSubtree());
 
 console.log("2nd Largest:", bst.kthLargest(2));
 console.log("3rd Smallest:", bst.kthSmallest(3));
+
+
+
+

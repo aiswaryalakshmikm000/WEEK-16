@@ -1,4 +1,8 @@
 //=================================================without delete entry loss further connection=====================================================
+//collision handled by finding the next empty slot, less memory as one key value pair in one slot
+
+//similar like quadratic probing
+
 
 class LinearProbing{
     constructor(size){
@@ -15,10 +19,10 @@ class LinearProbing{
 
     set(key,value){
         let index = this.hash(key);
-        while(this.table[index] !== undefined && this.table[index][0] !== key){
-            index = (index + 1) % this.size;
+        while(this.table[index] !== undefined && this.table[index][0] !== key){ //Keep moving forward as long as this spot is taken by some other key.
+            index = (index + 1) % this.size; //continue probing
         }
-        this.table[index] = [key,value]
+        this.table[index] = [key,value] // if same key the nupdate, if undefined or empty slot then insert 
     }
 
     get(key){
@@ -90,9 +94,7 @@ class LinearProbing {
 
         while (this.table[index] !== undefined && this.table[index] !== DELETED && this.table[index][0] !== key) {
             index = (index + 1) % this.size;
-            if (index === startIndex) {
-                throw new Error("Hash table is full");
-            }
+            if (index === startIndex)  throw new Error("Hash table is full");
         }
         this.table[index] = [key, value];
     }
@@ -128,9 +130,8 @@ class LinearProbing {
 
     display() {
         for (let i = 0; i < this.table.length; i++) {
-            const entry = this.table[i];
-            if (entry && entry !== DELETED) {
-                console.log(`${i}: ${entry[0]} => ${entry[1]}`);
+            if (this.table[i] && this.table[i] !== DELETED) {
+                console.log(`${i}: ${this.table[i][0]} => ${this.table[i][1]}`); // i: key => value
             }
         }
     }

@@ -1,5 +1,6 @@
-// All havethe constant time complexities
-// Unweighted, undirected graph
+// All have the constant time complexities
+// Unweighted, undirected graph  === {vertex1 :[], vertex2: [], vertex3: []}
+
 class Graph {
   constructor() {
     this.adjacencyList = {};
@@ -20,11 +21,11 @@ class Graph {
     if (!this.adjacencyList[vertex2]) {
       this.addVertex(vertex2);
     }
-    this.adjacencyList[vertex1].add(vertex2);
+    this.adjacencyList[vertex1].add(vertex2); // not push as its not array.. its set
     this.adjacencyList[vertex2].add(vertex1);
   }
 
-  //O(1)
+  //O(1) /// if yes then return true else return false like
   hasEdge(vertex1, vertex2) {
     return (
       this.adjacencyList[vertex1].has(vertex2) &&
@@ -47,7 +48,7 @@ class Graph {
     delete this.adjacencyList[vertex];
   }
 
-  // O(V + E) time complexity depennds on the number of adjacentVertices and edges
+  // O(V + E) time complexity depennds on the number of adjacent Vertices and edges
   bfs(start) {
     let queue = [start];
     let visited = new Set();
@@ -66,7 +67,7 @@ class Graph {
     }
   }
 
-  // O(V + E) time complexity depennds on the number of adjacentVertices and edges
+  // O(V + E) time complexity depennds on the number of adjacent Vertices and edges
   dfs(start, visited = new Set()) {
     if (!visited.has(start)) {
       visited.add(start);
@@ -80,7 +81,7 @@ class Graph {
     }
   }
 
-  // O(V + E) time complexity depennds on the number of adjacentVertices and edges
+  // O(V + E) time complexity depends on the number of adjacentVertices and edges
   display() {
     for (let vertex in this.adjacencyList) {
       console.log(vertex + " --> " + [...this.adjacencyList[vertex]]);

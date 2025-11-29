@@ -1,19 +1,19 @@
-function freequency(string){
+function frequency(str) {
     let obj = {}
 
-    for(i=0; i<string.length; i++){
-        if(!obj[string [i]]){
-            obj[string[i]] = 1
+    for (let ch of str) {        // obj[ch] ? obj[ch]++ : obj[ch] = 1    
+        if (!obj[ch]) {
+            obj[ch] = 1           
         } else {
-            obj[string[i]]++
+            obj[ch]++            
         }
     }
-    return obj
+
+    return obj   
 }
 
-console.log(freequency("Aishu"))
-console.log(freequency("Aiishuuu"))
-
+console.log(frequency("Aishu"))
+console.log(frequency("Aiishuuu"))
 
 
 //remove duplicate =========================================

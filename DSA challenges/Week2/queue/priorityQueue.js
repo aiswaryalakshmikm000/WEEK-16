@@ -3,6 +3,10 @@ class PriorityQueue {
         this.queue = []; // stores elements as objects {element, priority}
     }
 
+    isEmpty() {
+        return this.queue.length === 0;
+    }
+
     enqueue(element, priority) {
         const newElement = { element, priority };
         let added = false;
@@ -11,11 +15,11 @@ class PriorityQueue {
             if (newElement.priority > this.queue[i].priority) {
                 this.queue.splice(i, 0, newElement); // insert before lower priority
                 added = true;
-                break;
+                break; // instead of added.. we can early return frlm the loop when the if condition is true nd spliced 
             }
         }
 
-        if (!added) {
+        if (!added) { //if the priority is less than the queue priority.
             this.queue.push(newElement);
         }
     }
@@ -30,10 +34,6 @@ class PriorityQueue {
     peek() {
         if (this.isEmpty()) return null; 
         return this.queue[0]; //show highest priority
-    }
-
-    isEmpty() {
-        return this.queue.length === 0;
     }
 
     print() {

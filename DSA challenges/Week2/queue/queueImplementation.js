@@ -10,7 +10,7 @@ class Queue{
     }
 
     isEmpty(){
-        return this.items.length==0
+        return this.items.length === 0
     }
 
     enqueue(value){
@@ -54,24 +54,24 @@ class Queue{
         this.rear = 0
         this.front = 0
     }
+    isEmpty(){
+        return this.rear-this.front === 0 
+    }
+    size(){
+        return this.rear-this.front
+    }
     enqueue(element){
         this.items[this.rear] = element
         this.rear++
     }
     dequeue(){
-        const item = this.items[this.front]
+        const removedItem = this.items[this.front]
         delete this.items[this.front]
         this.front++
-        return item
-    }
-    isEmpty(){
-        return this.rear-this.front === 0 
+        return removedItem
     }
     peek(){
         return this.items[this.front]
-    }
-    size(){
-        return this.rear-this.front
     }
     print(){
         console.log(this.items)

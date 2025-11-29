@@ -46,7 +46,7 @@ function search(array, target, leftIndex, rightIndex){
     if (leftIndex > rightIndex){
         return -1
     }
-
+    
     let middleIndex = Math.floor((leftIndex + rightIndex) / 2)
 
     if (target === array[middleIndex]){

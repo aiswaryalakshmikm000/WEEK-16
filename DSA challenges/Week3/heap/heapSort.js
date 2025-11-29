@@ -1,3 +1,5 @@
+// in place heap sort 
+
 function heapSort(arr) {
   let n = arr.length;
 
@@ -24,7 +26,7 @@ function heapify(arr, heapSize, i) {
   let left = 2 * i + 1;
   let right = 2 * i + 2;
 
-  // If left child is larger
+  // If left child is larger to check if the child existsor not with the heap siae
   if (left < heapSize && arr[left] > arr[largest]) {
     largest = left;
   }

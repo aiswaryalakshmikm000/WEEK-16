@@ -54,7 +54,7 @@ class Stack {
 
     push(value){
         this.items[this.top] = value 
-        this.top++
+        this.top++  //here the top is the next key where we can add the new value... so the last key is actually this.top-1
         return `${value} pushed`; 
     }
 

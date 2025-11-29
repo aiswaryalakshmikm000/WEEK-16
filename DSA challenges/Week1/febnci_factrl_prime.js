@@ -12,7 +12,8 @@ console.log(febinocci(7));
 
 
 console.log("--------------------------------------febinocci recursion------------------------------------------------");
-//O(2^n)
+//O(2^n) //only give the sum
+
 function recurssiveFebinocci(n) {
   if (n < 2) {
     return n;
@@ -74,7 +75,7 @@ console.log("--------------------------------------factorial--------------------
 function factorial(n) {
   result = 1;
   for (i = 1; i <= n; i++) {
-    result = result * i;
+    result *= i;
   }
   return result;
 }
@@ -101,10 +102,8 @@ function isPrime(n) {
   if (n < 2) {
     return false;
   }
-  for (let i = 2; i < Math.sqrt(n); i++) {  //if i < n as the updation then the B(o) = O(n)
-    if (n % i === 0) {
-      return false;
-    }
+  for (let i = 2; i <= Math.sqrt(n); i++) {  //if i < n as the updation then the B(o) = O(n)
+    if (n % i === 0) return false;
   }
   return true;
 }
@@ -112,8 +111,19 @@ function isPrime(n) {
 console.log(isPrime(2));
 
 
+console.log("--------------------------------------prime recursion-----------------------------------------------------------");
 
-console.log("--------------------------------------power of 2 -----------------------------------------------------------");
+function isPrime(n, i=2) {
+  if(n<2) return false
+  if(n > Math.sqrt(n)) return true
+
+  if(n%i === 0) return false
+
+  return isPrime(n, i+1)
+}
+
+
+console.log("--------------------------------------power of 2-----------------------------------------------------------");
 //power of 2  O(log n)
 function isPowerOfTwo(n) {
 
@@ -133,7 +143,7 @@ function isPowerOfTwo(n) {
 
 console.log(isPowerOfTwo(9));
 
-// power of 2 recursion 
+// power of 2 recursion ==============================================
 
 function recursivePowerOfTwo (num) {
   if (num < 1) return false

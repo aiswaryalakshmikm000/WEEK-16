@@ -23,6 +23,7 @@ class MaxHeap {
     return this.heap[0];
   }
 
+ // O(log n)
   insert(value) {
     this.heap.push(value);
     this.heapifyUp(this.heap.length - 1);
@@ -39,7 +40,7 @@ class MaxHeap {
 
   isHeap(arr) {
     let n = arr.length;
-    for (let i = 0; i <= Math.floor((n - 2) / 2); i++) {
+    for (let i = 0; i <= Math.floor((n - 2) / 2); i++) {  //The last parent node (the last node that has at least one child)
       let left = this.getLeftChildIndex(i);
       let right = this.getRightChildIndex(i);
       if (left < n && arr[i] < arr[left]) return false;
@@ -48,11 +49,11 @@ class MaxHeap {
     return true;
   }
 
-  decreaseKey(index, newVal) {
-    if (index >= this.heap.length) return;
-    this.heap[index] = newVal;
-    this.heapifyDown(index); // For max heap, decreasing key may need to go down
-  }
+  decreaseKey(index, newVal) { 
+    if (index >= this.heap.length) return; 
+    this.heap[index] = newVal; 
+    this.heapifyDown(index); // For max heap, decreasing key may need to go down 
+  } 
 
   extractMax() {
     if (this.heap.length === 0) return null;

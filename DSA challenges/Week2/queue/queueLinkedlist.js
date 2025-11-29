@@ -38,11 +38,11 @@ class QueueLinkedList{
         }
         let removedValue = this.front
         this.front = this.front.next
+        this.size--
 
         if(this.isEmpty()){
-            this.rear = null
+            this.front = this.rear = null;
         }
-        this.size--
         return removedValue
     }
 

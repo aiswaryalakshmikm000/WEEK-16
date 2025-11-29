@@ -1,6 +1,6 @@
 let str = "this is my brand new car. i love my new car"
-let str1 = 'my'
-let str2 = 'new'
+let str1 = 'car'
+let str2 = 'love'
 
 function reverseSubstring(string, sub1, sub2){
     let i1 = string.indexOf(sub1)

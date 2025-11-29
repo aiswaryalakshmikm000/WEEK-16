@@ -1,42 +1,5 @@
-//-------------------------------------without collission handling-------------------------------------------
-
-class HashTable{
-    constructor(size){
-        this.table = new Array(size)
-        this.size = size
-    }
-    hash(key){
-       let total = 0
-       for(let i=0; i<key.length; i++){
-           total += key.charCodeAt(i)
-       }
-       return total % this.size
-       
-    }
-    set(key,value){
-        const index = this.hash(key)
-        this.table[index] = value
-    }
-    get(key){
-        const index = this.hash(key)
-        return this.table[index]
-    }
-    remove(key){
-        const index=this.hash(key)
-        this.table[index] = undefined
-    }
-    display(){
-        for(let i=0; i<this.table.length; i++){
-            if(this.table[i]){
-                console.log(i, this.table[i])
-            }
-        }
-    }
-}
-
-
-//============================================by handling collission=============================================
-
+//========================= separate chaining===================by handling collission=============================================
+// collision handled by Add to bucket, more memory because of more inner arrays 
 class HashTable {
     constructor(size){
         this.table = new Array(size)
@@ -109,11 +72,51 @@ table.set('batch' , "BCE@@$")
 table.set('mane' , "BCE224")
 
 
-console.log("-------------------------------")
-table.display()
+// console.log("-------------------------------")
+
 console.log(table.get("name"))
 table.set('name' , "Deepu")
-
-console.log("-------------------------------")
+table.display()
+// console.log("-------------------------------")
 table.remove('age')
 table.display()
+
+
+
+
+//-------------------------------------without collission handling-------------------------------------------
+
+class HashTable{
+    constructor(size){
+        this.table = new Array(size)
+        this.size = size
+    }
+    hash(key){
+       let total = 0
+       for(let i=0; i<key.length; i++){
+           total += key.charCodeAt(i)
+       }
+       return total % this.size   //always between 0 to this.size-1
+       
+    }
+    set(key,value){
+        const index = this.hash(key)
+        this.table[index] = value
+    }
+    get(key){
+        const index = this.hash(key)
+        return this.table[index]
+    }
+    remove(key){
+        const index=this.hash(key)
+        this.table[index] = undefined
+    }
+    display(){
+        for(let i=0; i<this.table.length; i++){
+            if(this.table[i]){  //doing iteration beacuse there will be some undefined and non added slots 
+                console.log(i, this.table[i])
+            }
+        }
+    }
+}
+
